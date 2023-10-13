@@ -32,6 +32,5 @@ jobs:
           npm run build
 
           if ! sudo lsof -i :3000; then # 포트 3000을 사용하여 Vue.js 앱을 실행
-           npm install @vue/cli
-           npm run start &
+           serve -s ./dist/ &
           fi
