@@ -29,4 +29,5 @@ jobs:
             git pull ${{ env.GIT_URL }}  # 변경 사항을 가져오기 test
           fi
           npm install
-          npm run dev
+          npm run build
+          serve -s ./dist/ &
