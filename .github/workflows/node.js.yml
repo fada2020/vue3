@@ -12,18 +12,19 @@ on:
 jobs:
   build:
     runs-on: vue3
-
-    strategy:
-      matrix:
-        node-version: [17.9.1]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    env:
+      DEV_PATH: /home/joo
+      GIT_URL: git@github.com:fada2020/vue3.git
 
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm ci
-      - run: npm run build --if-present
+      - name: Deploy to server
+        run: |
+          if [ ! -d ${{ env.DEV_PATH }} ]; then
+            git clone -b dev ${{ env.GIT_URL }}
+          else
+            mkdir -p ${{ env.DEV_PATH }}/vue3 && cd ${{ env.DEV_PATH }}/vue3  # Create the directory if it doesn't exist
+            git pull ${{ env.GIT_URL }} dev    # 변경 사항을 가져오기 test
+          fi
+          npm install
+          npm run build
