@@ -22,9 +22,9 @@ jobs:
         run: |
           mkdir -p ${{ env.DEV_PATH }} && cd ${{ env.DEV_PATH }}  # Create the directory if it doesn't exist
           if [ ! -d "${{ env.DEV_PATH }}/.git" ]; then
-            git clone -b dev ${{ env.GIT_URL }}
+            git clone ${{ env.GIT_URL }}
           else
-            git pull ${{ env.GIT_URL }} dev    # 변경 사항을 가져오기 test
+            git pull ${{ env.GIT_URL }}  # 변경 사항을 가져오기 test
           fi
           npm install
           npm run build
