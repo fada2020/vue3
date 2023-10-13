@@ -30,4 +30,4 @@ jobs:
           fi
           npm install
           npm run build
-          npx serve -s build &
+          serve -s ./dist/ &
