@@ -30,7 +30,3 @@ jobs:
           fi
           npm install
           npm run build
-
-          if ! sudo lsof -i :3000; then # 포트 3000을 사용하여 Vue.js 앱을 실행
-           serve -s ./dist/ &
-          fi
