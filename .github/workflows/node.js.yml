@@ -28,6 +28,7 @@ jobs:
           else
             git pull ${{ env.GIT_URL }}  # 변경 사항을 가져오기 test
           fi
-          cd ${{ env.DEV_PATH }}
+          export NVM_DIR=~/.nvm
+          source ~/.nvm/nvm.sh  
           npm install
           npm run dev
