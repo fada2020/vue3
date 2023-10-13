@@ -29,4 +29,8 @@ jobs:
             git pull ${{ env.GIT_URL }}  # 변경 사항을 가져오기 test
           fi
           npm install
-          npm run build
+          npm build
+
+          if ! sudo lsof -i :3000; then # 포트 3000을 사용하여 Vue.js 앱을 실행
+           npm start
+          fi
